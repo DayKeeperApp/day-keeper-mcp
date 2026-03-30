@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "server",
+  "dolt_database": "day_keeper_mcp",
+  "project_id": "e122c1de-7454-44b9-9bd6-4bbb402b56c2"
+}
