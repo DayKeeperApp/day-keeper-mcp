@@ -52,9 +52,7 @@ export function formatEvent(event: CalendarEvent): string {
     lines.push(`  Recurrence: ${event.recurrenceRule}`);
   }
   if (event.reminders?.length) {
-    const reminderTexts = event.reminders.map(
-      (r) => `${r.minutesBefore}min before (${r.method})`,
-    );
+    const reminderTexts = event.reminders.map((r) => `${r.minutesBefore}min before (${r.method})`);
     lines.push(`  Reminders: ${reminderTexts.join(", ")}`);
   }
 
@@ -152,17 +150,26 @@ export function formatShoppingList(list: ShoppingList): string {
 
 function formatListItem(item: ListItem): string {
   const check = item.isChecked ? "[x]" : "[ ]";
-  const qty = item.quantity != null ? ` (qty: ${item.quantity}${item.unit ? ` ${item.unit}` : ""})` : "";
+  const qty =
+    item.quantity != null ? ` (qty: ${item.quantity}${item.unit ? ` ${item.unit}` : ""})` : "";
   return `${check} ${item.name}${qty}`;
 }
 
 function formatContactMethod(cm: ContactMethod): string {
-  const label = cm.label ? ` (${cm.label}${cm.isPrimary ? ", primary" : ""})` : cm.isPrimary ? " (primary)" : "";
+  const label = cm.label
+    ? ` (${cm.label}${cm.isPrimary ? ", primary" : ""})`
+    : cm.isPrimary
+      ? " (primary)"
+      : "";
   return `${cm.type}${label}: ${cm.value}`;
 }
 
 function formatAddress(addr: Address): string {
-  const label = addr.label ? `${addr.label}${addr.isPrimary ? ", primary" : ""}` : addr.isPrimary ? "primary" : "";
+  const label = addr.label
+    ? `${addr.label}${addr.isPrimary ? ", primary" : ""}`
+    : addr.isPrimary
+      ? "primary"
+      : "";
   const prefix = label ? `${label}: ` : "";
   const parts = [addr.street1];
   if (addr.street2) parts.push(addr.street2);
@@ -179,7 +186,10 @@ function formatImportantDate(d: ImportantDate): string {
 
 function formatDateTime(iso: string): string {
   const date = new Date(iso);
-  return date.toISOString().replace("T", " ").replace(/\.\d{3}Z$/, " UTC");
+  return date
+    .toISOString()
+    .replace("T", " ")
+    .replace(/\.\d{3}Z$/, " UTC");
 }
 
 function formatTime(iso: string): string {
