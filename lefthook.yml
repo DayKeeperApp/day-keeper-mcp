@@ -1,0 +1,22 @@
+pre-commit:
+  parallel: true
+  commands:
+    beads:
+      run: |
+        if command -v bd >/dev/null 2>&1; then
+          BD_GIT_HOOK=1 bd hooks run pre-commit
+        fi
+    lint:
+      run: bunx @biomejs/biome check .
+    typecheck:
+      run: bunx tsc --noEmit
+
+pre-push:
+  commands:
+    beads:
+      run: |
+        if command -v bd >/dev/null 2>&1; then
+          BD_GIT_HOOK=1 bd hooks run pre-push
+        fi
+    test:
+      run: bun test
