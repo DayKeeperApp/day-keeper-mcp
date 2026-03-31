@@ -9,6 +9,7 @@ pre-commit:
     lint:
       run: bunx @biomejs/biome check .
     typecheck:
+      glob: "*.ts"
       run: bunx tsc --noEmit
 
 pre-push:
