@@ -10,14 +10,15 @@ Complete reference for all MCP tools provided by the Day Keeper MCP server.
 
 List all calendars, optionally filtered by space.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `spaceId` | `string (UUID)` | No | Filter calendars by space |
+| Parameter | Type            | Required | Description               |
+| --------- | --------------- | -------- | ------------------------- |
+| `spaceId` | `string (UUID)` | No       | Filter calendars by space |
 
 **GraphQL**: `calendars(spaceId?)` → `CalendarsConnection`
 
 **Example response**:
-```
+
+```text
 Calendars (3):
   - Work Calendar (id: abc-123, space: Personal, color: #4285f4)
   - Family Calendar (id: def-456, space: Family, color: #34a853)
@@ -30,12 +31,12 @@ Calendars (3):
 
 Create a new calendar in a space.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `spaceId` | `string (UUID)` | Yes | Space to create the calendar in |
-| `name` | `string` | Yes | Calendar name |
-| `color` | `string` | Yes | Hex color code (e.g., `#4285f4`) |
-| `isDefault` | `boolean` | No | Set as default calendar (default: false) |
+| Parameter   | Type            | Required | Description                              |
+| ----------- | --------------- | -------- | ---------------------------------------- |
+| `spaceId`   | `string (UUID)` | Yes      | Space to create the calendar in          |
+| `name`      | `string`        | Yes      | Calendar name                            |
+| `color`     | `string`        | Yes      | Hex color code (e.g., `#4285f4`)         |
+| `isDefault` | `boolean`       | No       | Set as default calendar (default: false) |
 
 **GraphQL**: `createCalendar` mutation
 
@@ -45,11 +46,11 @@ Create a new calendar in a space.
 
 Update an existing calendar's name or color.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Calendar ID |
-| `name` | `string` | No | New name |
-| `color` | `string` | No | New hex color |
+| Parameter | Type            | Required | Description   |
+| --------- | --------------- | -------- | ------------- |
+| `id`      | `string (UUID)` | Yes      | Calendar ID   |
+| `name`    | `string`        | No       | New name      |
+| `color`   | `string`        | No       | New hex color |
 
 **GraphQL**: `updateCalendar` mutation
 
@@ -59,9 +60,9 @@ Update an existing calendar's name or color.
 
 Delete a calendar (soft-delete).
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Calendar ID |
+| Parameter | Type            | Required | Description |
+| --------- | --------------- | -------- | ----------- |
+| `id`      | `string (UUID)` | Yes      | Calendar ID |
 
 **GraphQL**: `deleteCalendar` mutation
 
@@ -71,11 +72,11 @@ Delete a calendar (soft-delete).
 
 List calendar events with optional filters.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `calendarId` | `string (UUID)` | No | Filter by calendar |
-| `first` | `number` | No | Page size (default: 25, max: 100) |
-| `after` | `string` | No | Pagination cursor |
+| Parameter    | Type            | Required | Description                       |
+| ------------ | --------------- | -------- | --------------------------------- |
+| `calendarId` | `string (UUID)` | No       | Filter by calendar                |
+| `first`      | `number`        | No       | Page size (default: 25, max: 100) |
+| `after`      | `string`        | No       | Pagination cursor                 |
 
 **GraphQL**: `calendarEvents(calendarId?)` → `CalendarEventsConnection`
 
@@ -85,9 +86,9 @@ List calendar events with optional filters.
 
 Get full details of a calendar event including reminders and recurrence exceptions.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Event ID |
+| Parameter | Type            | Required | Description |
+| --------- | --------------- | -------- | ----------- |
+| `id`      | `string (UUID)` | Yes      | Event ID    |
 
 **GraphQL**: `calendarEventById(id)` with reminders and recurrenceExceptions fragments
 
@@ -97,18 +98,18 @@ Get full details of a calendar event including reminders and recurrence exceptio
 
 Create a new calendar event. Supports one-time and recurring events.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `calendarId` | `string (UUID)` | Yes | Calendar to add the event to |
-| `title` | `string` | Yes | Event title |
-| `startAt` | `string (ISO 8601)` | Yes | Start datetime (UTC) |
-| `endAt` | `string (ISO 8601)` | Yes | End datetime (UTC) |
-| `timezone` | `string` | Yes | IANA timezone (e.g., `America/Chicago`) |
-| `isAllDay` | `boolean` | No | All-day event (default: false) |
-| `description` | `string` | No | Event description |
-| `location` | `string` | No | Event location |
-| `recurrenceRule` | `string` | No | RFC 5545 RRULE (e.g., `FREQ=WEEKLY;BYDAY=MO,WE,FR`) |
-| `eventTypeId` | `string (UUID)` | No | Event type |
+| Parameter        | Type                | Required | Description                                         |
+| ---------------- | ------------------- | -------- | --------------------------------------------------- |
+| `calendarId`     | `string (UUID)`     | Yes      | Calendar to add the event to                        |
+| `title`          | `string`            | Yes      | Event title                                         |
+| `startAt`        | `string (ISO 8601)` | Yes      | Start datetime (UTC)                                |
+| `endAt`          | `string (ISO 8601)` | Yes      | End datetime (UTC)                                  |
+| `timezone`       | `string`            | Yes      | IANA timezone (e.g., `America/Chicago`)             |
+| `isAllDay`       | `boolean`           | No       | All-day event (default: false)                      |
+| `description`    | `string`            | No       | Event description                                   |
+| `location`       | `string`            | No       | Event location                                      |
+| `recurrenceRule` | `string`            | No       | RFC 5545 RRULE (e.g., `FREQ=WEEKLY;BYDAY=MO,WE,FR`) |
+| `eventTypeId`    | `string (UUID)`     | No       | Event type                                          |
 
 **GraphQL**: `createCalendarEvent` mutation
 
@@ -118,14 +119,14 @@ Create a new calendar event. Supports one-time and recurring events.
 
 Update an existing calendar event.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Event ID |
-| `title` | `string` | No | New title |
-| `startAt` | `string (ISO 8601)` | No | New start |
-| `endAt` | `string (ISO 8601)` | No | New end |
-| `description` | `string` | No | New description |
-| `location` | `string` | No | New location |
+| Parameter     | Type                | Required | Description     |
+| ------------- | ------------------- | -------- | --------------- |
+| `id`          | `string (UUID)`     | Yes      | Event ID        |
+| `title`       | `string`            | No       | New title       |
+| `startAt`     | `string (ISO 8601)` | No       | New start       |
+| `endAt`       | `string (ISO 8601)` | No       | New end         |
+| `description` | `string`            | No       | New description |
+| `location`    | `string`            | No       | New location    |
 
 **GraphQL**: `updateCalendarEvent` mutation
 
@@ -135,9 +136,9 @@ Update an existing calendar event.
 
 Delete a calendar event (soft-delete).
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Event ID |
+| Parameter | Type            | Required | Description |
+| --------- | --------------- | -------- | ----------- |
+| `id`      | `string (UUID)` | Yes      | Event ID    |
 
 **GraphQL**: `deleteCalendarEvent` mutation
 
@@ -147,19 +148,22 @@ Delete a calendar event (soft-delete).
 
 **Key tool** — List all events (including expanded recurring events) within a date range.
 
-This is the primary tool for answering "What's on my calendar this week?" It calls the `eventsForRange` GraphQL query which performs server-side recurrence expansion, returning `ExpandedOccurrence` objects.
+This is the primary tool for answering "What's on my calendar this week?" It calls the
+`eventsForRange` GraphQL query which performs server-side recurrence expansion, returning
+`ExpandedOccurrence` objects.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `calendarIds` | `string[] (UUID[])` | Yes | Calendar IDs to query |
-| `rangeStart` | `string (ISO 8601)` | Yes | Range start (UTC) |
-| `rangeEnd` | `string (ISO 8601)` | Yes | Range end (UTC) |
-| `timezone` | `string` | Yes | IANA timezone |
+| Parameter     | Type                | Required | Description           |
+| ------------- | ------------------- | -------- | --------------------- |
+| `calendarIds` | `string[] (UUID[])` | Yes      | Calendar IDs to query |
+| `rangeStart`  | `string (ISO 8601)` | Yes      | Range start (UTC)     |
+| `rangeEnd`    | `string (ISO 8601)` | Yes      | Range end (UTC)       |
+| `timezone`    | `string`            | Yes      | IANA timezone         |
 
 **GraphQL**: `eventsForRange(calendarIds, rangeStart, rangeEnd, timezone)` → `[ExpandedOccurrence]`
 
 **Example response**:
-```
+
+```text
 Events for Mar 29 - Apr 5 (America/Chicago):
 
 Mon Mar 31:
@@ -183,9 +187,9 @@ Wed Apr 2:
 
 List all projects, optionally filtered by space.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `spaceId` | `string (UUID)` | No | Filter by space |
+| Parameter | Type            | Required | Description     |
+| --------- | --------------- | -------- | --------------- |
+| `spaceId` | `string (UUID)` | No       | Filter by space |
 
 **GraphQL**: `projects(spaceId?)` → `ProjectsConnection`
 
@@ -195,11 +199,11 @@ List all projects, optionally filtered by space.
 
 Create a new project in a space.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `spaceId` | `string (UUID)` | Yes | Space for the project |
-| `name` | `string` | Yes | Project name |
-| `description` | `string` | No | Project description |
+| Parameter     | Type            | Required | Description           |
+| ------------- | --------------- | -------- | --------------------- |
+| `spaceId`     | `string (UUID)` | Yes      | Space for the project |
+| `name`        | `string`        | Yes      | Project name          |
+| `description` | `string`        | No       | Project description   |
 
 **GraphQL**: `createProject` mutation
 
@@ -209,11 +213,11 @@ Create a new project in a space.
 
 Update a project's name or description.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Project ID |
-| `name` | `string` | No | New name |
-| `description` | `string` | No | New description |
+| Parameter     | Type            | Required | Description     |
+| ------------- | --------------- | -------- | --------------- |
+| `id`          | `string (UUID)` | Yes      | Project ID      |
+| `name`        | `string`        | No       | New name        |
+| `description` | `string`        | No       | New description |
 
 **GraphQL**: `updateProject` mutation
 
@@ -223,13 +227,13 @@ Update a project's name or description.
 
 List tasks with filters. Supports filtering by space, project, status, and priority.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `spaceId` | `string (UUID)` | No | Filter by space |
-| `projectId` | `string (UUID)` | No | Filter by project |
-| `status` | `string` | No | Filter by status (e.g., `OPEN`, `COMPLETED`) |
-| `priority` | `string` | No | Filter by priority (e.g., `HIGH`, `MEDIUM`, `LOW`) |
-| `first` | `number` | No | Page size (default: 25) |
+| Parameter   | Type            | Required | Description                                        |
+| ----------- | --------------- | -------- | -------------------------------------------------- |
+| `spaceId`   | `string (UUID)` | No       | Filter by space                                    |
+| `projectId` | `string (UUID)` | No       | Filter by project                                  |
+| `status`    | `string`        | No       | Filter by status (e.g., `OPEN`, `COMPLETED`)       |
+| `priority`  | `string`        | No       | Filter by priority (e.g., `HIGH`, `MEDIUM`, `LOW`) |
+| `first`     | `number`        | No       | Page size (default: 25)                            |
 
 **GraphQL**: `taskItems(spaceId?)` with `where` filters → `TaskItemsConnection`
 
@@ -239,9 +243,9 @@ List tasks with filters. Supports filtering by space, project, status, and prior
 
 Get full task details including categories and attachments.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Task ID |
+| Parameter | Type            | Required | Description |
+| --------- | --------------- | -------- | ----------- |
+| `id`      | `string (UUID)` | Yes      | Task ID     |
 
 **GraphQL**: `taskItemById(id)` with taskCategories and attachments fragments
 
@@ -251,17 +255,17 @@ Get full task details including categories and attachments.
 
 Create a new task.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `spaceId` | `string (UUID)` | Yes | Space for the task |
-| `title` | `string` | Yes | Task title |
-| `description` | `string` | No | Task description |
-| `priority` | `string` | No | Priority level |
-| `status` | `string` | No | Initial status |
-| `projectId` | `string (UUID)` | No | Assign to project |
-| `dueAt` | `string (ISO 8601)` | No | Due datetime |
-| `dueDate` | `string (YYYY-MM-DD)` | No | Due date (date only) |
-| `recurrenceRule` | `string` | No | RFC 5545 RRULE for recurring tasks |
+| Parameter        | Type                  | Required | Description                        |
+| ---------------- | --------------------- | -------- | ---------------------------------- |
+| `spaceId`        | `string (UUID)`       | Yes      | Space for the task                 |
+| `title`          | `string`              | Yes      | Task title                         |
+| `description`    | `string`              | No       | Task description                   |
+| `priority`       | `string`              | No       | Priority level                     |
+| `status`         | `string`              | No       | Initial status                     |
+| `projectId`      | `string (UUID)`       | No       | Assign to project                  |
+| `dueAt`          | `string (ISO 8601)`   | No       | Due datetime                       |
+| `dueDate`        | `string (YYYY-MM-DD)` | No       | Due date (date only)               |
+| `recurrenceRule` | `string`              | No       | RFC 5545 RRULE for recurring tasks |
 
 **GraphQL**: `createTaskItem` mutation
 
@@ -271,14 +275,14 @@ Create a new task.
 
 Update a task's fields.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Task ID |
-| `title` | `string` | No | New title |
-| `description` | `string` | No | New description |
-| `priority` | `string` | No | New priority |
-| `status` | `string` | No | New status |
-| `dueAt` | `string (ISO 8601)` | No | New due datetime |
+| Parameter     | Type                | Required | Description      |
+| ------------- | ------------------- | -------- | ---------------- |
+| `id`          | `string (UUID)`     | Yes      | Task ID          |
+| `title`       | `string`            | No       | New title        |
+| `description` | `string`            | No       | New description  |
+| `priority`    | `string`            | No       | New priority     |
+| `status`      | `string`            | No       | New status       |
+| `dueAt`       | `string (ISO 8601)` | No       | New due datetime |
 
 **GraphQL**: `updateTaskItem` mutation
 
@@ -288,9 +292,9 @@ Update a task's fields.
 
 Mark a task as completed.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Task ID |
+| Parameter | Type            | Required | Description |
+| --------- | --------------- | -------- | ----------- |
+| `id`      | `string (UUID)` | Yes      | Task ID     |
 
 **GraphQL**: `completeTaskItem` mutation
 
@@ -300,9 +304,9 @@ Mark a task as completed.
 
 Delete a task (soft-delete).
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Task ID |
+| Parameter | Type            | Required | Description |
+| --------- | --------------- | -------- | ----------- |
+| `id`      | `string (UUID)` | Yes      | Task ID     |
 
 **GraphQL**: `deleteTaskItem` mutation
 
@@ -312,10 +316,10 @@ Delete a task (soft-delete).
 
 Tag a task with a category.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `taskItemId` | `string (UUID)` | Yes | Task ID |
-| `categoryId` | `string (UUID)` | Yes | Category ID |
+| Parameter    | Type            | Required | Description |
+| ------------ | --------------- | -------- | ----------- |
+| `taskItemId` | `string (UUID)` | Yes      | Task ID     |
+| `categoryId` | `string (UUID)` | Yes      | Category ID |
 
 **GraphQL**: `assignCategory` mutation
 
@@ -325,10 +329,10 @@ Tag a task with a category.
 
 Remove a category from a task.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `taskItemId` | `string (UUID)` | Yes | Task ID |
-| `categoryId` | `string (UUID)` | Yes | Category ID |
+| Parameter    | Type            | Required | Description |
+| ------------ | --------------- | -------- | ----------- |
+| `taskItemId` | `string (UUID)` | Yes      | Task ID     |
+| `categoryId` | `string (UUID)` | Yes      | Category ID |
 
 **GraphQL**: `removeCategory` mutation
 
@@ -340,10 +344,10 @@ Remove a category from a task.
 
 List people/contacts, optionally filtered by space.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `spaceId` | `string (UUID)` | No | Filter by space |
-| `first` | `number` | No | Page size (default: 25) |
+| Parameter | Type            | Required | Description             |
+| --------- | --------------- | -------- | ----------------------- |
+| `spaceId` | `string (UUID)` | No       | Filter by space         |
+| `first`   | `number`        | No       | Page size (default: 25) |
 
 **GraphQL**: `persons(spaceId?)` → `PersonsConnection`
 
@@ -353,14 +357,15 @@ List people/contacts, optionally filtered by space.
 
 Get full contact details including contact methods, addresses, and important dates.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Person ID |
+| Parameter | Type            | Required | Description |
+| --------- | --------------- | -------- | ----------- |
+| `id`      | `string (UUID)` | Yes      | Person ID   |
 
 **GraphQL**: `personById(id)` with contactMethods, addresses, importantDates, attachments
 
 **Example response**:
-```
+
+```text
 Jane Smith (id: abc-123)
 Space: Family
 
@@ -384,12 +389,12 @@ Notes: Sister, lives in Springfield
 
 Create a new contact.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `spaceId` | `string (UUID)` | Yes | Space for the contact |
-| `firstName` | `string` | Yes | First name |
-| `lastName` | `string` | Yes | Last name |
-| `notes` | `string` | No | Notes about this person |
+| Parameter   | Type            | Required | Description             |
+| ----------- | --------------- | -------- | ----------------------- |
+| `spaceId`   | `string (UUID)` | Yes      | Space for the contact   |
+| `firstName` | `string`        | Yes      | First name              |
+| `lastName`  | `string`        | Yes      | Last name               |
+| `notes`     | `string`        | No       | Notes about this person |
 
 **GraphQL**: `createPerson` mutation
 
@@ -399,12 +404,12 @@ Create a new contact.
 
 Update a person's name or notes.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Person ID |
-| `firstName` | `string` | No | New first name |
-| `lastName` | `string` | No | New last name |
-| `notes` | `string` | No | New notes |
+| Parameter   | Type            | Required | Description    |
+| ----------- | --------------- | -------- | -------------- |
+| `id`        | `string (UUID)` | Yes      | Person ID      |
+| `firstName` | `string`        | No       | New first name |
+| `lastName`  | `string`        | No       | New last name  |
+| `notes`     | `string`        | No       | New notes      |
 
 **GraphQL**: `updatePerson` mutation
 
@@ -414,13 +419,13 @@ Update a person's name or notes.
 
 Add a contact method (phone, email, etc.) to a person.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `personId` | `string (UUID)` | Yes | Person ID |
-| `type` | `string` | Yes | Contact type (e.g., `PHONE`, `EMAIL`) |
-| `value` | `string` | Yes | Contact value (phone number, email address) |
-| `label` | `string` | No | Label (e.g., `work`, `mobile`, `home`) |
-| `isPrimary` | `boolean` | No | Set as primary (default: false) |
+| Parameter   | Type            | Required | Description                                 |
+| ----------- | --------------- | -------- | ------------------------------------------- |
+| `personId`  | `string (UUID)` | Yes      | Person ID                                   |
+| `type`      | `string`        | Yes      | Contact type (e.g., `PHONE`, `EMAIL`)       |
+| `value`     | `string`        | Yes      | Contact value (phone number, email address) |
+| `label`     | `string`        | No       | Label (e.g., `work`, `mobile`, `home`)      |
+| `isPrimary` | `boolean`       | No       | Set as primary (default: false)             |
 
 **GraphQL**: `createContactMethod` mutation
 
@@ -430,17 +435,17 @@ Add a contact method (phone, email, etc.) to a person.
 
 Add an address to a person.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `personId` | `string (UUID)` | Yes | Person ID |
-| `street1` | `string` | Yes | Street line 1 |
-| `street2` | `string` | No | Street line 2 |
-| `city` | `string` | Yes | City |
-| `state` | `string` | No | State/province |
-| `postalCode` | `string` | No | Postal/ZIP code |
-| `country` | `string` | Yes | Country |
-| `label` | `string` | No | Label (e.g., `home`, `work`) |
-| `isPrimary` | `boolean` | No | Set as primary (default: false) |
+| Parameter    | Type            | Required | Description                     |
+| ------------ | --------------- | -------- | ------------------------------- |
+| `personId`   | `string (UUID)` | Yes      | Person ID                       |
+| `street1`    | `string`        | Yes      | Street line 1                   |
+| `street2`    | `string`        | No       | Street line 2                   |
+| `city`       | `string`        | Yes      | City                            |
+| `state`      | `string`        | No       | State/province                  |
+| `postalCode` | `string`        | No       | Postal/ZIP code                 |
+| `country`    | `string`        | Yes      | Country                         |
+| `label`      | `string`        | No       | Label (e.g., `home`, `work`)    |
+| `isPrimary`  | `boolean`       | No       | Set as primary (default: false) |
 
 **GraphQL**: `createAddress` mutation
 
@@ -450,12 +455,12 @@ Add an address to a person.
 
 Add an important date (birthday, anniversary, etc.) to a person.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `personId` | `string (UUID)` | Yes | Person ID |
-| `label` | `string` | Yes | Date label (e.g., `Birthday`, `Anniversary`) |
-| `dateValue` | `string (YYYY-MM-DD)` | Yes | The date |
-| `eventTypeId` | `string (UUID)` | No | Associated event type |
+| Parameter     | Type                  | Required | Description                                  |
+| ------------- | --------------------- | -------- | -------------------------------------------- |
+| `personId`    | `string (UUID)`       | Yes      | Person ID                                    |
+| `label`       | `string`              | Yes      | Date label (e.g., `Birthday`, `Anniversary`) |
+| `dateValue`   | `string (YYYY-MM-DD)` | Yes      | The date                                     |
+| `eventTypeId` | `string (UUID)`       | No       | Associated event type                        |
 
 **GraphQL**: `createImportantDate` mutation
 
@@ -467,9 +472,9 @@ Add an important date (birthday, anniversary, etc.) to a person.
 
 List all shopping lists, optionally filtered by space.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `spaceId` | `string (UUID)` | No | Filter by space |
+| Parameter | Type            | Required | Description     |
+| --------- | --------------- | -------- | --------------- |
+| `spaceId` | `string (UUID)` | No       | Filter by space |
 
 **GraphQL**: `shoppingLists(spaceId?)` → `ShoppingListsConnection`
 
@@ -479,14 +484,15 @@ List all shopping lists, optionally filtered by space.
 
 Get a shopping list with all its items.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Shopping list ID |
+| Parameter | Type            | Required | Description      |
+| --------- | --------------- | -------- | ---------------- |
+| `id`      | `string (UUID)` | Yes      | Shopping list ID |
 
 **GraphQL**: `shoppingListById(id)` with listItems fragment
 
 **Example response**:
-```
+
+```text
 Grocery Run (id: abc-123)
 Space: Family
 Items (7):
@@ -505,10 +511,10 @@ Items (7):
 
 Create a new shopping list.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `spaceId` | `string (UUID)` | Yes | Space for the list |
-| `name` | `string` | Yes | List name |
+| Parameter | Type            | Required | Description        |
+| --------- | --------------- | -------- | ------------------ |
+| `spaceId` | `string (UUID)` | Yes      | Space for the list |
+| `name`    | `string`        | Yes      | List name          |
 
 **GraphQL**: `createShoppingList` mutation
 
@@ -518,13 +524,13 @@ Create a new shopping list.
 
 Add an item to a shopping list.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `shoppingListId` | `string (UUID)` | Yes | List ID |
-| `name` | `string` | Yes | Item name |
-| `quantity` | `number` | No | Quantity |
-| `unit` | `string` | No | Unit (e.g., `lbs`, `oz`, `gallon`) |
-| `sortOrder` | `number` | No | Position in list |
+| Parameter        | Type            | Required | Description                        |
+| ---------------- | --------------- | -------- | ---------------------------------- |
+| `shoppingListId` | `string (UUID)` | Yes      | List ID                            |
+| `name`           | `string`        | Yes      | Item name                          |
+| `quantity`       | `number`        | No       | Quantity                           |
+| `unit`           | `string`        | No       | Unit (e.g., `lbs`, `oz`, `gallon`) |
+| `sortOrder`      | `number`        | No       | Position in list                   |
 
 **GraphQL**: `createListItem` mutation
 
@@ -534,14 +540,14 @@ Add an item to a shopping list.
 
 Update a shopping list item (check off, change quantity, etc.).
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Item ID |
-| `name` | `string` | No | New name |
-| `quantity` | `number` | No | New quantity |
-| `unit` | `string` | No | New unit |
-| `isChecked` | `boolean` | No | Check/uncheck |
-| `sortOrder` | `number` | No | New position |
+| Parameter   | Type            | Required | Description   |
+| ----------- | --------------- | -------- | ------------- |
+| `id`        | `string (UUID)` | Yes      | Item ID       |
+| `name`      | `string`        | No       | New name      |
+| `quantity`  | `number`        | No       | New quantity  |
+| `unit`      | `string`        | No       | New unit      |
+| `isChecked` | `boolean`       | No       | Check/uncheck |
+| `sortOrder` | `number`        | No       | New position  |
 
 **GraphQL**: `updateListItem` mutation
 
@@ -551,9 +557,9 @@ Update a shopping list item (check off, change quantity, etc.).
 
 Remove an item from a shopping list.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Item ID |
+| Parameter | Type            | Required | Description |
+| --------- | --------------- | -------- | ----------- |
+| `id`      | `string (UUID)` | Yes      | Item ID     |
 
 **GraphQL**: `deleteListItem` mutation
 
@@ -570,7 +576,8 @@ No parameters.
 **GraphQL**: `spaces` → `SpacesConnection`
 
 **Example response**:
-```
+
+```text
 Spaces (3):
   - Personal (id: abc-123, type: personal, default)
   - Family (id: def-456, type: shared, 4 members)
@@ -583,9 +590,9 @@ Spaces (3):
 
 Get space details with membership list.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `id` | `string (UUID)` | Yes | Space ID |
+| Parameter | Type            | Required | Description |
+| --------- | --------------- | -------- | ----------- |
+| `id`      | `string (UUID)` | Yes      | Space ID    |
 
 **GraphQL**: `spaceById(id)` with memberships fragment
 
@@ -595,11 +602,11 @@ Get space details with membership list.
 
 Add a member to a space.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `spaceId` | `string (UUID)` | Yes | Space ID |
-| `userId` | `string (UUID)` | Yes | User ID to add |
-| `role` | `string` | Yes | Role: `OWNER`, `EDITOR`, `VIEWER` |
+| Parameter | Type            | Required | Description                       |
+| --------- | --------------- | -------- | --------------------------------- |
+| `spaceId` | `string (UUID)` | Yes      | Space ID                          |
+| `userId`  | `string (UUID)` | Yes      | User ID to add                    |
+| `role`    | `string`        | Yes      | Role: `OWNER`, `EDITOR`, `VIEWER` |
 
 **GraphQL**: `addSpaceMember` mutation
 
@@ -609,11 +616,11 @@ Add a member to a space.
 
 Change a member's role in a space.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `spaceId` | `string (UUID)` | Yes | Space ID |
-| `userId` | `string (UUID)` | Yes | User ID |
-| `role` | `string` | Yes | New role: `OWNER`, `EDITOR`, `VIEWER` |
+| Parameter | Type            | Required | Description                           |
+| --------- | --------------- | -------- | ------------------------------------- |
+| `spaceId` | `string (UUID)` | Yes      | Space ID                              |
+| `userId`  | `string (UUID)` | Yes      | User ID                               |
+| `role`    | `string`        | Yes      | New role: `OWNER`, `EDITOR`, `VIEWER` |
 
 **GraphQL**: `updateSpaceMemberRole` mutation
 
@@ -625,16 +632,17 @@ Change a member's role in a space.
 
 Pull recent changes from the Day Keeper sync protocol. Useful for "What changed recently?" queries.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `cursor` | `number` | No | ChangeLog cursor (null for initial sync) |
-| `spaceId` | `string (UUID)` | No | Filter changes by space |
-| `limit` | `number` | No | Max changes to return (1-1000, default: 100) |
+| Parameter | Type            | Required | Description                                  |
+| --------- | --------------- | -------- | -------------------------------------------- |
+| `cursor`  | `number`        | No       | ChangeLog cursor (null for initial sync)     |
+| `spaceId` | `string (UUID)` | No       | Filter changes by space                      |
+| `limit`   | `number`        | No       | Max changes to return (1-1000, default: 100) |
 
 **REST**: `POST /api/v1/sync/pull`
 
 **Example response**:
-```
+
+```text
 Changes since cursor 1523 (showing 3 of 3, no more):
 
 1. CalendarEvent created (id: abc-123) at 2026-03-29T14:30:00Z

@@ -14,7 +14,7 @@ pre-commit:
         jobs:
           - name: biome-format
             glob: "*.{ts,tsx,js,jsx,json,jsonc}"
-            run: bunx @biomejs/biome format --config-path .config --write {staged_files}
+            run: bunx @biomejs/biome format --write {staged_files}
             stage_fixed: true
 
           - name: prettier
@@ -48,7 +48,7 @@ pre-commit:
         jobs:
           - name: biome-check
             glob: "*.{ts,tsx,js,jsx,json,jsonc}"
-            run: bunx @biomejs/biome check --config-path .config {staged_files}
+            run: bunx @biomejs/biome check {staged_files}
 
           - name: typecheck
             glob: "*.{ts,tsx}"
@@ -103,7 +103,7 @@ pre-push:
             run: bunx tsc --noEmit
 
           - name: lint
-            run: bunx @biomejs/biome check --config-path .config .
+            run: bunx @biomejs/biome check .
 
 commit-msg:
   commands:

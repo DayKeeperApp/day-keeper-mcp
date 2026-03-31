@@ -7,7 +7,6 @@
   "endOfLine": "lf",
   "proseWrap": "preserve",
   "htmlWhitespaceSensitivity": "css",
-  "xmlSelfClosingSpace": true,
   "overrides": [
     {
       "files": "*.md",

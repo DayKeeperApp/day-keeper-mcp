@@ -2,7 +2,8 @@
 
 Complete reference for all MCP resources provided by the Day Keeper MCP server.
 
-Resources are read-only data sources that MCP clients can surface to users or models. They use the `daykeeper://` URI scheme.
+Resources are read-only data sources that MCP clients can surface to users or models. They use the
+`daykeeper://` URI scheme.
 
 ---
 
@@ -16,7 +17,7 @@ All spaces accessible to the current tenant.
 
 **Response format**: Plain text listing of spaces with ID, name, type, and member count.
 
-```
+```text
 Spaces (3):
   - Personal (id: abc-123, type: personal, default)
   - Family (id: def-456, type: shared, 4 members)
@@ -31,7 +32,7 @@ All calendars across all spaces.
 
 **Response format**: Plain text listing grouped by space.
 
-```
+```text
 Calendars (5):
 
 Personal:
@@ -54,7 +55,7 @@ All projects across all spaces.
 
 **Response format**: Plain text listing grouped by space with task counts.
 
-```
+```text
 Projects (4):
 
 Personal:
@@ -74,7 +75,7 @@ All task categories available in the tenant.
 
 **Response format**: Plain text listing with colors and icons.
 
-```
+```text
 Categories (6):
   - Urgent (id: cat-001, color: #ea4335, icon: fire)
   - Personal (id: cat-002, color: #34a853, icon: person)
@@ -92,7 +93,7 @@ All event types defined in the tenant.
 
 **Response format**: Plain text listing.
 
-```
+```text
 Event Types (4):
   - Meeting (id: et-001)
   - Appointment (id: et-002)
@@ -104,7 +105,8 @@ Event Types (4):
 
 ## Dynamic Template Resources
 
-These resources use URI templates with variables. MCP clients can discover available entities via the template's list callback.
+These resources use URI templates with variables. MCP clients can discover available entities via
+the template's list callback.
 
 ### `daykeeper://space/{spaceId}`
 
@@ -113,7 +115,8 @@ Detailed view of a specific space including membership list.
 **URI variable**: `spaceId` — UUID of the space
 
 **Response format**:
-```
+
+```text
 Space: Family (id: def-456)
 Type: shared
 Created: 2026-01-15
@@ -141,7 +144,8 @@ Calendar details with event summary.
 **URI variable**: `calendarId` — UUID of the calendar
 
 **Response format**:
-```
+
+```text
 Calendar: Family Events (id: cal-003)
 Space: Family
 Color: #34a853
@@ -167,7 +171,8 @@ Full event details including reminders and recurrence exceptions.
 **URI variable**: `eventId` — UUID of the calendar event
 
 **Response format**:
-```
+
+```text
 Event: Team Standup (id: evt-001)
 Calendar: Meetings (Work Projects)
 Type: Meeting
@@ -196,7 +201,8 @@ Full task details with categories and project.
 **URI variable**: `taskId` — UUID of the task item
 
 **Response format**:
-```
+
+```text
 Task: Update API documentation (id: task-001)
 Project: Q2 Launch (Work Projects)
 Status: OPEN
@@ -222,7 +228,8 @@ Full contact details with all contact methods, addresses, and important dates.
 **URI variable**: `personId` — UUID of the person
 
 **Response format**:
-```
+
+```text
 Person: Jane Smith (id: person-001)
 Space: Family
 
@@ -253,7 +260,8 @@ Shopping list with all items and their status.
 **URI variable**: `listId` — UUID of the shopping list
 
 **Response format**:
-```
+
+```text
 Shopping List: Grocery Run (id: list-001)
 Space: Family
 Items (7, 2 checked):
@@ -276,10 +284,12 @@ Updated: 2026-03-29
 
 ### `daykeeper://schema/entities`
 
-Reference documentation for all 22 Day Keeper entity types, their fields, and relationships. Useful for LLMs to understand the data model.
+Reference documentation for all 22 Day Keeper entity types, their fields, and relationships. Useful
+for LLMs to understand the data model.
 
 **Response format**:
-```
+
+```text
 Day Keeper Entity Types (22):
 
 Core:
