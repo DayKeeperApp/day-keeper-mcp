@@ -1,0 +1,27 @@
+# https://github.com/your-org/gitfluff (commit message linting)
+[rules]
+# Conventional commits: type(scope): description
+# Types: feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert
+conventional = true
+
+[rules.header]
+max_length = 72
+min_length = 10
+
+[rules.body]
+max_line_length = 100
+
+[rules.type]
+allowed = [
+  "feat",
+  "fix",
+  "docs",
+  "style",
+  "refactor",
+  "perf",
+  "test",
+  "build",
+  "ci",
+  "chore",
+  "revert",
+]

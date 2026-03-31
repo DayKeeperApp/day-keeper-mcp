@@ -1,0 +1,51 @@
+{
+  "semi": true,
+  "singleQuote": false,
+  "trailingComma": "all",
+  "tabWidth": 2,
+  "printWidth": 100,
+  "endOfLine": "lf",
+  "proseWrap": "preserve",
+  "htmlWhitespaceSensitivity": "css",
+  "xmlSelfClosingSpace": true,
+  "overrides": [
+    {
+      "files": "*.md",
+      "options": {
+        "proseWrap": "always"
+      }
+    },
+    {
+      "files": "*.{yaml,yml}",
+      "options": {
+        "singleQuote": false,
+        "bracketSpacing": true
+      }
+    },
+    {
+      "files": "*.graphql",
+      "options": {
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": "*.sql",
+      "options": {
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": "*.{xml,svg}",
+      "options": {
+        "printWidth": 120
+      }
+    },
+    {
+      "files": "*.{html,css,scss}",
+      "options": {
+        "printWidth": 100,
+        "singleQuote": false
+      }
+    }
+  ]
+}

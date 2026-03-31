@@ -1,0 +1,29 @@
+{
+  // https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+  "config": {
+    "default": true,
+    // MD003: Heading style — use ATX (#) headings
+    "MD003": { "style": "atx" },
+    // MD004: Unordered list style — use dashes
+    "MD004": { "style": "dash" },
+    // MD013: Line length — disabled, many URLs and code spans exceed limits
+    "MD013": false,
+    // MD024: Allow duplicate headings in different sections
+    "MD024": { "siblings_only": true },
+    // MD033: Allow inline HTML (common in GitHub-flavored markdown)
+    "MD033": false,
+    // MD034: Allow bare URLs (auto-linked by GitHub)
+    "MD034": false,
+    // MD041: First line should be a top-level heading
+    "MD041": true,
+    // MD046: Code block style — use fenced (```)
+    "MD046": { "style": "fenced" },
+    // MD048: Code fence style — use backticks
+    "MD048": { "style": "backtick" }
+  },
+  "ignores": [
+    "node_modules/**",
+    ".beads/**",
+    "dist/**"
+  ]
+}
