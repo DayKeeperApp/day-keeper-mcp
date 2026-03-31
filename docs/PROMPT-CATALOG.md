@@ -2,7 +2,8 @@
 
 Complete reference for all MCP prompts provided by the Day Keeper MCP server.
 
-Prompts are reusable interaction templates that fetch live data from the Day Keeper API and construct structured messages for LLM interactions.
+Prompts are reusable interaction templates that fetch live data from the Day Keeper API and
+construct structured messages for LLM interactions.
 
 ---
 
@@ -12,9 +13,9 @@ Plan your day with your calendar events and open tasks.
 
 ### Arguments
 
-| Argument | Type | Required | Default | Description |
-|----------|------|----------|---------|-------------|
-| `date` | `string (YYYY-MM-DD)` | No | Today | Date to plan for |
+| Argument | Type                  | Required | Default | Description      |
+| -------- | --------------------- | -------- | ------- | ---------------- |
+| `date`   | `string (YYYY-MM-DD)` | No       | Today   | Date to plan for |
 
 ### Data Fetched
 
@@ -23,7 +24,7 @@ Plan your day with your calendar events and open tasks.
 
 ### Example Rendered Output
 
-```
+```text
 Here is your schedule and open tasks for Saturday, March 29, 2026:
 
 ## Calendar Events
@@ -62,9 +63,9 @@ Review the week's accomplishments and plan ahead.
 
 ### Arguments
 
-| Argument | Type | Required | Default | Description |
-|----------|------|----------|---------|-------------|
-| `weekStart` | `string (YYYY-MM-DD)` | No | Most recent Monday | Start of the week to review |
+| Argument    | Type                  | Required | Default            | Description                 |
+| ----------- | --------------------- | -------- | ------------------ | --------------------------- |
+| `weekStart` | `string (YYYY-MM-DD)` | No       | Most recent Monday | Start of the week to review |
 
 ### Data Fetched
 
@@ -74,7 +75,7 @@ Review the week's accomplishments and plan ahead.
 
 ### Example Rendered Output
 
-```
+```text
 Here is your week in review (Mar 24 - Mar 30, 2026):
 
 ## Events Attended (12)
@@ -120,9 +121,9 @@ Prepare for a specific meeting with context and attendees.
 
 ### Arguments
 
-| Argument | Type | Required | Default | Description |
-|----------|------|----------|---------|-------------|
-| `eventId` | `string (UUID)` | Yes | — | Calendar event ID to prepare for |
+| Argument  | Type            | Required | Default | Description                      |
+| --------- | --------------- | -------- | ------- | -------------------------------- |
+| `eventId` | `string (UUID)` | Yes      | —       | Calendar event ID to prepare for |
 
 ### Data Fetched
 
@@ -132,7 +133,7 @@ Prepare for a specific meeting with context and attendees.
 
 ### Example Rendered Output
 
-```
+```text
 ## Meeting Prep: Product Review
 
 When: Monday, March 31 at 11:00 AM - 12:00 PM (America/Chicago)
@@ -169,9 +170,9 @@ Build and manage a shopping list interactively.
 
 ### Arguments
 
-| Argument | Type | Required | Default | Description |
-|----------|------|----------|---------|-------------|
-| `listId` | `string (UUID)` | No | — | Existing list to modify (omit to create new) |
+| Argument | Type            | Required | Default | Description                                  |
+| -------- | --------------- | -------- | ------- | -------------------------------------------- |
+| `listId` | `string (UUID)` | No       | —       | Existing list to modify (omit to create new) |
 
 ### Data Fetched
 
@@ -180,7 +181,7 @@ Build and manage a shopping list interactively.
 
 ### Example Rendered Output (existing list)
 
-```
+```text
 ## Shopping List: Grocery Run
 
 Current items (7, 2 checked):
@@ -205,7 +206,7 @@ What would you like to do?
 
 ### Example Rendered Output (new list)
 
-```
+```text
 Let's create a new shopping list!
 
 Available spaces:
@@ -230,9 +231,9 @@ Find and summarize contact details by name.
 
 ### Arguments
 
-| Argument | Type | Required | Default | Description |
-|----------|------|----------|---------|-------------|
-| `name` | `string` | Yes | — | Name to search for (first, last, or full) |
+| Argument | Type     | Required | Default | Description                               |
+| -------- | -------- | -------- | ------- | ----------------------------------------- |
+| `name`   | `string` | Yes      | —       | Name to search for (first, last, or full) |
 
 ### Data Fetched
 
@@ -241,7 +242,7 @@ Find and summarize contact details by name.
 
 ### Example Rendered Output
 
-```
+```text
 ## Contact Lookup: "Smith"
 
 Found 2 matches:
@@ -277,9 +278,9 @@ Check for upcoming important dates in your contacts.
 
 ### Arguments
 
-| Argument | Type | Required | Default | Description |
-|----------|------|----------|---------|-------------|
-| `daysAhead` | `number` | No | `30` | Number of days to look ahead |
+| Argument    | Type     | Required | Default | Description                  |
+| ----------- | -------- | -------- | ------- | ---------------------------- |
+| `daysAhead` | `number` | No       | `30`    | Number of days to look ahead |
 
 ### Data Fetched
 
@@ -288,7 +289,7 @@ Check for upcoming important dates in your contacts.
 
 ### Example Rendered Output
 
-```
+```text
 ## Upcoming Important Dates (next 30 days)
 
 ### This Week (Mar 29 - Apr 4)

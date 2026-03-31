@@ -13,16 +13,12 @@ trailing_newline = true
 
 # Sort tool versions alphabetically in mise config
 [[rule]]
-keys = ["tools.*"]
 formatting = { reorder_keys = true }
+keys = ["tools.*"]
 
 # Sort task definitions alphabetically
 [[rule]]
-keys = ["tasks.*"]
 formatting = { reorder_keys = true }
+keys = ["tasks.*"]
 
-[[exclude]]
-path = ".beads/**"
-
-[[exclude]]
-path = "node_modules/**"
+exclude = [".beads/**", "node_modules/**"]

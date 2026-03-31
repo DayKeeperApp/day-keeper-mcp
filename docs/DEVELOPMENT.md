@@ -37,15 +37,15 @@ mise run inspect
 
 ## mise Tasks
 
-| Task | Command | Description |
-|------|---------|-------------|
-| `dev` | `mise run dev` | Run server in stdio mode |
-| `dev-http` | `mise run dev-http` | Run server in HTTP mode on port 3001 |
-| `test` | `mise run test` | Run all tests with bun:test |
-| `typecheck` | `mise run typecheck` | Type-check with tsc --noEmit |
-| `lint` | `mise run lint` | Check code with Biome |
-| `lint-fix` | `mise run lint-fix` | Fix lint issues with Biome |
-| `inspect` | `mise run inspect` | Open MCP Inspector |
+| Task        | Command              | Description                          |
+| ----------- | -------------------- | ------------------------------------ |
+| `dev`       | `mise run dev`       | Run server in stdio mode             |
+| `dev-http`  | `mise run dev-http`  | Run server in HTTP mode on port 3001 |
+| `test`      | `mise run test`      | Run all tests with bun:test          |
+| `typecheck` | `mise run typecheck` | Type-check with tsc --noEmit         |
+| `lint`      | `mise run lint`      | Check code with Biome                |
+| `lint-fix`  | `mise run lint-fix`  | Fix lint issues with Biome           |
+| `inspect`   | `mise run inspect`   | Open MCP Inspector                   |
 
 ## Testing
 
@@ -96,7 +96,7 @@ const [clientTransport, serverTransport] = InMemoryTransport.createLinkedPair();
 
 ### Test Structure
 
-```
+```text
 test/
 ├── fixtures/           # JSON response fixtures from the Day Keeper API
 ├── helpers/
@@ -116,7 +116,7 @@ test/
 ```typescript
 export async function handleMyTool(
   client: GraphQLClient,
-  args: { param1: string; param2?: number }
+  args: { param1: string; param2?: number },
 ) {
   try {
     const result = await client.query(MY_QUERY, { ...args });
@@ -130,50 +130,42 @@ export async function handleMyTool(
 }
 ```
 
-2. **Register the tool** in the domain file's registration function:
+1. **Register the tool** in the domain file's registration function:
 
 ```typescript
 server.tool(
   "my-tool",
   "Description of what this tool does",
   { param1: z.string(), param2: z.number().optional() },
-  async (args) => handleMyTool(client, args)
+  async (args) => handleMyTool(client, args),
 );
 ```
 
-3. **Add a unit test** in `test/tools/<domain>.test.ts`
+1. **Add a unit test** in `test/tools/<domain>.test.ts`
 
-4. **Update TOOL-CATALOG.md** with the new tool's documentation
+2. **Update TOOL-CATALOG.md** with the new tool's documentation
 
 ## Adding a New Resource
 
 1. **For static resources** — Use `server.resource()`:
 
 ```typescript
-server.resource(
-  "my-resource",
-  "daykeeper://my-resource",
-  async (uri) => ({
-    contents: [{ uri: uri.href, mimeType: "text/plain", text: "..." }],
-  })
-);
+server.resource("my-resource", "daykeeper://my-resource", async (uri) => ({
+  contents: [{ uri: uri.href, mimeType: "text/plain", text: "..." }],
+}));
 ```
 
-2. **For dynamic resources** — Use `ResourceTemplate`:
+1. **For dynamic resources** — Use `ResourceTemplate`:
 
 ```typescript
 const template = new ResourceTemplate("daykeeper://entity/{id}", { list: undefined });
 
-server.resource(
-  "entity-detail",
-  template,
-  async (uri, { id }) => ({
-    contents: [{ uri: uri.href, mimeType: "text/plain", text: "..." }],
-  })
-);
+server.resource("entity-detail", template, async (uri, { id }) => ({
+  contents: [{ uri: uri.href, mimeType: "text/plain", text: "..." }],
+}));
 ```
 
-3. **Add a test** and **update RESOURCE-CATALOG.md**
+1. **Add a test** and **update RESOURCE-CATALOG.md**
 
 ## Adding a New Prompt
 
@@ -188,14 +180,17 @@ server.prompt(
     const data = await client.query(SOME_QUERY, args);
     return {
       messages: [
-        { role: "user", content: { type: "text", text: `Context: ${formatData(data)}\n\nPlease help me...` } }
+        {
+          role: "user",
+          content: { type: "text", text: `Context: ${formatData(data)}\n\nPlease help me...` },
+        },
       ],
     };
-  }
+  },
 );
 ```
 
-2. **Add a test** and **update PROMPT-CATALOG.md**
+1. **Add a test** and **update PROMPT-CATALOG.md**
 
 ## Code Style
 
@@ -216,10 +211,12 @@ Biome replaces both ESLint and Prettier with a single, fast tool.
 [lefthook](https://github.com/evilmartians/lefthook) manages git hooks:
 
 **pre-commit** (runs in parallel):
+
 - `lint` — Biome check
 - `typecheck` — tsc --noEmit
 
 **pre-push**:
+
 - `test` — bun test
 
 Install hooks after cloning:
@@ -230,7 +227,7 @@ bunx lefthook install
 
 ## Project Structure
 
-```
+```text
 src/
 ├── index.ts          # Entry point: load config, select transport, start server
 ├── server.ts         # McpServer creation + register all capabilities
