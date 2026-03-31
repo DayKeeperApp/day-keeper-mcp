@@ -20,4 +20,5 @@ pre-push:
           BD_GIT_HOOK=1 bd hooks run pre-push
         fi
     test:
+      glob: "*.{test,spec}.{js,ts,jsx,tsx}"
       run: bun test
