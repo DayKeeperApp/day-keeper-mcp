@@ -1,0 +1,9 @@
+# https://www.shellcheck.net/wiki/
+# Default shell dialect
+shell=bash
+
+# Allow "appears unused" — common with sourced variables
+disable=SC2034
+
+# Allow sourcing from variable paths
+disable=SC1091

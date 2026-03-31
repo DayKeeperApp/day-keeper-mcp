@@ -1,0 +1,23 @@
+---
+extends: default
+
+rules:
+  document-start: disable
+  line-length:
+    max: 120
+    allow-non-breakable-words: true
+    allow-non-breakable-inline-mappings: true
+  truthy:
+    allowed-values: ["true", "false", "on", "off"]
+  comments:
+    min-spaces-from-content: 1
+  indentation:
+    spaces: 2
+    indent-sequences: consistent
+  empty-lines:
+    max: 1
+
+ignore:
+  - .beads/
+  - node_modules/
+  - dist/

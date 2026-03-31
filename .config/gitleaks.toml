@@ -1,0 +1,12 @@
+# https://github.com/gitleaks/gitleaks#configuration
+title = "day-keeper-mcp gitleaks config"
+
+[allowlist]
+description = "Global allowlist"
+paths = [
+  '''.beads/''',
+  '''node_modules/''',
+  '''dist/''',
+  '''bun\.lock''',
+  '''\.config/''',
+]

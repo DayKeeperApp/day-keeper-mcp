@@ -1,0 +1,28 @@
+[formatting]
+align_comments = true
+align_entries = false
+allowed_blank_lines = 1
+array_auto_expand = true
+array_trailing_comma = true
+column_width = 100
+indent_string = "  "
+inline_table_expand = false
+reorder_arrays = false
+reorder_keys = true
+trailing_newline = true
+
+# Sort tool versions alphabetically in mise config
+[[rule]]
+keys = ["tools.*"]
+formatting = { reorder_keys = true }
+
+# Sort task definitions alphabetically
+[[rule]]
+keys = ["tasks.*"]
+formatting = { reorder_keys = true }
+
+[[exclude]]
+path = ".beads/**"
+
+[[exclude]]
+path = "node_modules/**"

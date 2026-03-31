@@ -1,0 +1,12 @@
+---
+# https://github.com/hadolint/hadolint#configure
+failure-threshold: warning
+no-fail: false
+
+ignored:
+  # Allow apt-get install without version pinning in dev images
+  - DL3008
+
+trustedRegistries:
+  - docker.io
+  - ghcr.io
